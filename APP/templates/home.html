@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+
+
+
+{% block navbar-content %}
+    <i style="color: yellow;" class="fas fa-user-alt"></i> &nbsp;&nbsp; Employee management
+
+{% endblock navbar-content %}
+
+
+
+
+
+
+{% block content %}
+    <div class="container">
+        <br><br><br>
+
+        <table class="table table-bordered" id="example" style="text-align: center;">
+            <thead class="table-success">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Occputation</th>
+                    <th>Salary</th>
+                    <th>Gender</th>
+                </tr>
+            </thead>
+            {% for employee in employees %}
+            <tr>
+                <td>{{ employee.id }}</td>
+                <td>{{ employee.name }}</td>
+                <td>{{ employee.email }}</td>
+                <td>{{ employee.occputation }}</td>
+                <td>{{ employee.salary }}</td>
+                <td>{{ employee.gender }}</td>
+
+            </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+    <br><br><br><br>
+
+{% endblock content %}
+

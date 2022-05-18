@@ -1,0 +1,16 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    max-width: 100%;
+}
+
+.wrapper{
+    min-height: 100%;
+    margin-bottom: -50%;
+}
+
+#footer,
+.push{
+    height: 50px;
+}

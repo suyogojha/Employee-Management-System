@@ -1,0 +1,153 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <link href="{% static 'img/1.ico' %}" rel="shortcut icon">
+    <link href="{% static 'img/favicon.ico' %}" rel="shortcut icon">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.12.0/b-2.2.3/b-html5-2.2.3/b-print-2.2.3/datatables.min.css"/>
+
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.12.0/css/dataTables.bootstrap5.min.css"> -->
+
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="col-sm">
+                    <a href="" class="navbar-brand flex-grow-1" style="text-align:center; color:#fff; margin-left:25px;">
+                        {% block navbar-content %}
+                        {% endblock navbar-content %}
+                    </a>
+                </div>
+            </nav>
+        </header>
+
+        {% block content %}
+        {% endblock content %}
+
+    </div>
+
+    <footer class="bg-dark text-center text-lg-start" id="footer" style="color:#fff;">
+        <div class="text-center p-3" style="background-color: rgba(0,0,0,0.2);"> &copy; {% now "Y" %} Copyright
+            <a href="#" style="text-decoration: none;" class="text-light">
+                <span style="color:aqua;">Suyog</span>
+            </a>
+        </div>
+    </footer>
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+
+    <!-- #import this from https://datatables.net/examples/styling/bootstrap5.html -->
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.12.0/b-2.2.3/b-html5-2.2.3/b-print-2.2.3/datatables.min.js"></script>
+
+
+
+    <!-- #import this from https://datatables.net/examples/styling/bootstrap5.html -->
+    <!-- <script src="https://cdn.datatables.net/1.12.0/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script> -->
+
+    <script>
+        $('#example').DataTable({
+            "ajax": "/json",
+            "columns": [
+                {"data": "id"},
+                {"data": "name"},
+                {"data": "email"},
+                {"data": "occputation"},
+                {"data": "salary"},
+                {"data": "gender"},
+            ],
+
+
+
+
+            paging: true,
+            pageLength: 7,
+            lengthChange: true,
+            autoWidth: true,
+            searching: true,
+            bInfo: true,
+            bSort: true,
+            
+           dom: 'lBfrtip',
+           buttons: [
+                {//copy
+                    extend: 'copy',
+                    text: '<i class="fas fa-clone"></i>',
+                    className: 'btn btn-secondary',
+                    titleAttr: 'Copy',
+                    //choose the columns you want to copy
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5]
+                    },
+                },
+                {//Excel
+                    extend: 'excel',
+                    text: '<i class="fas fa-file-excel"></i>',
+                    className: 'btn btn-secondary',
+                    titleAttr: 'Excel',
+                    //choose the columns you want to copy
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5]
+                    },
+                },
+                {//PDF
+                    extend: 'pdf',
+                    text: '<i class="fas fa-file-pdf"></i>',
+                    className: 'btn btn-secondary',
+                    titleAttr: 'PDF',
+                    //choose the columns you want to copy
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5]
+                    },
+                },
+
+                {//Print
+                    extend: 'print',
+                    text: '<i class="fas fa-print"></i>',
+                    className: 'btn btn-secondary',
+                    titleAttr: 'Print',
+                    //choose the columns you want to copy
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5]
+                    },
+
+                    //Font size (when exporting to print)
+                    customize: function ( win ) {
+                        $(win.document.body).css('font-size', '10pt')
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    } 
+                }
+            ]
+        });
+        </script>
+
+
+</body>
+</html>
